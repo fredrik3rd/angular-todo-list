@@ -15,6 +15,7 @@ export class CrudComponent {
   currentTaskID = "";
   isSaveDisabled = false;
   isUpdateDisabled = true;
+
  
   constructor(private http: HttpClient )
   {
@@ -29,10 +30,10 @@ export class CrudComponent {
       "name" : this.name,
       "description" : this.description,
     };
- 
+    this.name = '';
+    this.description = '';
     this.http.post("http://127.0.0.1:8000/task",bodyData).subscribe((resultData: any)=>
     {
-        console.log(resultData);
         this.getAllTask();
     });
   }
@@ -43,7 +44,6 @@ export class CrudComponent {
     this.http.get("http://127.0.0.1:8000/task")
     .subscribe((resultData: any)=>
     {
-        console.log(resultData);
         this.TaskArray = resultData;
     });
   }
@@ -67,10 +67,10 @@ export class CrudComponent {
       "name" : this.name,
       "description" : this.description,
     };
-    
+    this.name='';
+    this.description='';
     this.http.put("http://127.0.0.1:8000/task/"+ this.currentTaskID , bodyData).subscribe((resultData: any)=>
     {
-        console.log(resultData);
         this.name = '';
         this.description = '';
         this.getAllTask();
@@ -84,7 +84,6 @@ export class CrudComponent {
   {
     this.http.delete("http://127.0.0.1:8000/task/"+ data.id).subscribe((resultData: any)=>
     {
-        console.log(resultData);
         this.getAllTask();
     });
  
