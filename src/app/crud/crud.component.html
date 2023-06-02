@@ -1,0 +1,47 @@
+<div class="form" >
+  <h1>Todo App</h1>
+  <div class="card">
+           
+    <form style="border: solid 1px gray; display: grid; grid-template-columns: 50% 50%; width: 50%; margin: auto; border-radius: 25px;">
+      <div class="inputs">
+      <div class="form-group">
+        <label >Task Name</label>
+        <input type="text"  [(ngModel)]="name" [ngModelOptions]="{standalone: true}" class="form-control" id="taskname" name="taskname" placeholder="Enter Task Name" required>
+      </div>
+      
+      <div class="form-group">
+        <label >Description</label>
+        <input type="text" [(ngModel)]="description" [ngModelOptions]="{standalone: true}" class="form-control" id="taskdesc" name="taskdesc" placeholder="Enter Task Description" required>
+      </div>
+      </div>
+      <div class="buttons">
+      <button type="submit" id="btn-save" (click)="saveRecords()" [disabled]="isSaveDisabled">Save</button><br>
+      <button type="submit" id="btn-update" (click)="UpdateRecords()" [disabled]="isUpdateDisabled" disabled>Update</button>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="task-list">
+    <h1>Tasks for today</h1>
+
+      <div class="task-container" *ngFor="let TaskItem of TaskArray; let i = index">
+        
+        <div class="task-item">
+          <div class="task-info">
+            <div class="task-desc">
+              <div style="margin: 5px;"><span style="font-weight: bold;">Task Name:</span><br>{{TaskItem.name}}</div>
+              <div style="margin: 5px;"><span style="font-weight: bold;">Description:</span><br>{{TaskItem.description}}</div>
+            </div>
+            <div class="task-number">
+              <div class="num">{{i+1}}</div>
+            </div>
+          </div>
+          <div class="actions">
+            <button type="button" id="btn-edit" (click)="setUpdate(TaskItem)"><img src="assets/edit.png" draggable="false" width="100%"></button>
+            <button type="button" id="btn-done" (click)="setDelete(TaskItem)"><img src="assets/checklist.png" draggable="false" width="100%"></button>
+          </div>
+        </div>
+      </div>
+
+
+</div>
